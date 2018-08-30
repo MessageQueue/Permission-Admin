@@ -68,7 +68,7 @@ public class UserRoleController {
     public BaseResponse find(@RequestParam("id") Long id){
         UserRole UserRole = targetService.selectById(id);
         if(UserRole==null){
-            return BaseResponse.onFail("尚未查询到此ID");
+            return BaseResponse.onFailure("尚未查询到此ID");
         }
         return BaseResponse.onSuccess(UserRole);
     }
@@ -84,7 +84,7 @@ public class UserRoleController {
         if(isOk){
             return BaseResponse.onSuccess("数据添加成功！");
         }
-        return BaseResponse.onFail("数据添加失败");
+        return BaseResponse.onFailure("数据添加失败");
     }
 
 
@@ -98,7 +98,7 @@ public class UserRoleController {
         if(isOk){
             return BaseResponse.onSuccess("数据更改成功！");
         }
-        return BaseResponse.onFail("数据更改失败");
+        return BaseResponse.onFailure("数据更改失败");
      }
 
 
@@ -112,7 +112,7 @@ public class UserRoleController {
         if(isOk){
             return BaseResponse.onSuccess("数据删除成功！");
         }
-        return BaseResponse.onFail("数据删除失败");
+        return BaseResponse.onFailure("数据删除失败");
         }
     }
 

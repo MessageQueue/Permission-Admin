@@ -4,21 +4,32 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.message.entity.Dept">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="fullname" property="fullname" />
-        <result column="sequeen" property="sequeen" />
-        <result column="p_id" property="pId" />
-        <result column="status" property="status" />
-        <result column="create_date" property="createDate" />
-        <result column="update_date" property="updateDate" />
-        <result column="operator" property="operator" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="fullname" property="fullname"/>
+        <result column="sequeen" property="sequeen"/>
+        <result column="p_id" property="pId"/>
+        <result column="status" property="status"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="operator" property="operator"/>
+        <result column="levels" property="levels"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, fullname, sequeen, p_id, status, create_date, update_date, operator, remark
     </sql>
+
+    <select id="findDeptWithLevel" resultMap="BaseResultMap" parameterType="integer">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM sys_dept WHERE levels LIKE '% #{level}'
+
+        <!--SELECT-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--FROM sys_dept-->
+    </select>
 
 </mapper>

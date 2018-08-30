@@ -1,6 +1,10 @@
 package com.message.controller;
 
 
+import com.message.config.ApplicationContextHolder;
+import com.message.entity.Dept;
+import com.message.mapper.DeptMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -22,16 +26,16 @@ import java.util.List;
  * @author Liu
  * @since 2018-08-29
  */
+@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 
-
     private IUserService targetService;
 
     @Autowired
-    public UserController(IUserService targetService){
+    public UserController(IUserService targetService) {
         this.targetService = targetService;
     }
 
@@ -41,8 +45,8 @@ public class UserController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public BaseResponse findListByPage(@RequestParam(name = "page", defaultValue = "1") int pageIndex,@RequestParam(name = "rows", defaultValue = "20") int step){
-        Page page = new Page(pageIndex,step);
+    public BaseResponse findListByPage(@RequestParam(name = "page", defaultValue = "1") int pageIndex, @RequestParam(name = "rows", defaultValue = "20") int step) {
+        Page page = new Page(pageIndex, step);
         targetService.selectPage(page);
         return BaseResponse.onSuccess(page);
     }
@@ -53,7 +57,7 @@ public class UserController {
      */
     @RequestMapping("/all")
     @ResponseBody
-    public BaseResponse findAll(){
+    public BaseResponse findAll() {
         Page page = new Page();
         targetService.selectPage(page);
         return BaseResponse.onSuccess(page);
@@ -65,10 +69,10 @@ public class UserController {
      */
     @RequestMapping("/find")
     @ResponseBody
-    public BaseResponse find(@RequestParam("id") Long id){
+    public BaseResponse find(@RequestParam("id") Long id) {
         User User = targetService.selectById(id);
-        if(User==null){
-            return BaseResponse.onFail("尚未查询到此ID");
+        if (User == null) {
+            return BaseResponse.onFailure("尚未查询到此ID");
         }
         return BaseResponse.onSuccess(User);
     }
@@ -79,12 +83,12 @@ public class UserController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse addItem(@RequestBody User User){
+    public BaseResponse addItem(@RequestBody User User) {
         boolean isOk = targetService.insert(User);
-        if(isOk){
+        if (isOk) {
             return BaseResponse.onSuccess("数据添加成功！");
         }
-        return BaseResponse.onFail("数据添加失败");
+        return BaseResponse.onFailure("数据添加失败");
     }
 
 
@@ -93,13 +97,13 @@ public class UserController {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse updateItem(@RequestBody User User){
+    public BaseResponse updateItem(@RequestBody User User) {
         boolean isOk = targetService.updateAllColumnById(User);
-        if(isOk){
+        if (isOk) {
             return BaseResponse.onSuccess("数据更改成功！");
         }
-        return BaseResponse.onFail("数据更改失败");
-     }
+        return BaseResponse.onFailure("数据更改失败");
+    }
 
 
     /**
@@ -107,12 +111,12 @@ public class UserController {
      */
     @RequestMapping("/del")
     @ResponseBody
-    public BaseResponse deleteItems(@RequestParam("ids") List<Long> ids){
+    public BaseResponse deleteItems(@RequestParam("ids") List<Long> ids) {
         boolean isOk = targetService.deleteBatchIds(ids);
-        if(isOk){
+        if (isOk) {
             return BaseResponse.onSuccess("数据删除成功！");
         }
-        return BaseResponse.onFail("数据删除失败");
-        }
+        return BaseResponse.onFailure("数据删除失败");
     }
+}
 

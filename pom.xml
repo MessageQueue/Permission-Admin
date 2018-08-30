@@ -66,6 +66,8 @@
 		<okhttp3-version>3.10.0</okhttp3-version>
 		<amqp-version>5.1.2</amqp-version>
 		<pool2-version>2.4.2</pool2-version>
+		<fastjson-version>1.2.15</fastjson-version>
+		<hibernate-version>5.3.4.Final</hibernate-version>
 	</properties>
 
 	<dependencies>
@@ -106,6 +108,17 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
 
 
 	</dependencies>
@@ -122,6 +135,18 @@
 			</plugin>
 		</plugins>
 
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<!--指定资源的位置-->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 	</build>
 
 

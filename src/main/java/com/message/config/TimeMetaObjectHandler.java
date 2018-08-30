@@ -1,6 +1,7 @@
 package com.message.config;
 
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +15,9 @@ import java.util.Date;
  * @since 2018/07/13
  */
 
-
+@Slf4j
 public class TimeMetaObjectHandler extends MetaObjectHandler {
 
-    private Logger logger = LoggerFactory.getLogger(TimeMetaObjectHandler.class);
 
     @Override
     public void insertFill(MetaObject metaObject) {
@@ -26,7 +26,7 @@ public class TimeMetaObjectHandler extends MetaObjectHandler {
             setFieldValByName("createDate", new Date(), metaObject);
             setFieldValByName("updateDate", new Date(), metaObject);
         }
-        logger.info(metaObject.toString());
+        log.info(metaObject.toString());
     }
 
     @Override

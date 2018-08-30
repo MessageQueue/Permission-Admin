@@ -6,6 +6,8 @@ import com.message.service.IDeptService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 部门 服务实现类
@@ -17,4 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
 
+    @Override
+    public List<Dept> findDeptWithLevel(Integer level) {
+        return baseMapper.findDeptWithLevel(level);
+    }
 }

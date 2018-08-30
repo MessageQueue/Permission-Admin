@@ -29,7 +29,7 @@ public class BaseResponse {
     /**
      * 数据返回成功
      * */
-    public static BaseResponse onFail(String msg){
+    public static BaseResponse onFailure(String msg){
         BaseResponse baseResponse=new BaseResponse();
         baseResponse.setCode(RESPONSE_FAIL_CODE);
         baseResponse.setData(msg);
