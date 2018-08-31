@@ -3,9 +3,11 @@ package com.message.controller;
 
 import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.google.common.collect.Multimap;
 import com.message.dto.DeptDto;
 import com.message.exception.ParamException;
 import com.message.utils.LevelUtils;
+import com.message.vo.DeptTreeVo;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.message.common.BaseResponse;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * <p>
@@ -73,12 +77,18 @@ public class DeptController {
     @RequestMapping("/tree")
     @ResponseBody
     public BaseResponse findListByLevel(@RequestParam(name = "levelId", defaultValue = "0") Integer levelId) {
-//        Page page = new Page();
-//        Wrapper wrapper = Condition.create().like("level", String.valueOf(levelId));
-//        String sql = wrapper.getSqlSegment();
-//        targetService.selectPage(page, wrapper);
-        List<Dept> depts = targetService.findDeptWithLevel(levelId);
-        return BaseResponse.onSuccess(depts);
+        return BaseResponse.onSuccess(targetService.findDeptWithLevel(levelId));
+    }
+
+
+    /**
+     * 获取数据列表
+     */
+    @RequestMapping("/tree/list")
+    @ResponseBody
+    public BaseResponse findAllTree() {
+
+        return BaseResponse.onSuccess(targetService.findAllDeptTree());
     }
 
 

@@ -25,7 +25,7 @@
     <select id="findDeptWithLevel" resultMap="BaseResultMap" parameterType="integer">
         SELECT
         <include refid="Base_Column_List"></include>
-        FROM sys_dept WHERE levels LIKE '% #{level}'
+        FROM sys_dept WHERE levels LIKE CONCAT('%',#{level})
 
         <!--SELECT-->
         <!--<include refid="Base_Column_List"/>-->

@@ -2,6 +2,7 @@ package com.message.service;
 
 import com.message.entity.Dept;
 import com.baomidou.mybatisplus.service.IService;
+import com.message.vo.DeptTreeVo;
 
 import java.util.List;
 
@@ -16,6 +17,15 @@ import java.util.List;
 public interface IDeptService extends IService<Dept> {
 
 
-    public List<Dept> findDeptWithLevel(Integer level);
+    /**
+     * 根据等级，获取当前等级的节点
+     */
+    public List<DeptTreeVo> findDeptWithLevel(Integer level);
+
+
+    /**
+     * 获取所有层级节点
+     */
+    public DeptTreeVo findAllDeptTree();
 
 }

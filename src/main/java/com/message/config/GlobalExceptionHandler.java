@@ -72,10 +72,10 @@ public class GlobalExceptionHandler {
         if (e instanceof ParamException) {
             return BaseResponse.onFailure(e.getMessage());
         }
-        log.error("出错了:", e.getMessage());
-        if (e instanceof NonTransientDataAccessException) {
-            return BaseResponse.onFailure("数据库层面上发生异常信息");
-        }
+        log.error("出错了:", e);
+//        if (e instanceof NonTransientDataAccessException) {
+//            return BaseResponse.onFailure("数据库层面上发生异常信息");
+//        }
         return BaseResponse.onFailure(e.getMessage());
     }
 

@@ -68,6 +68,7 @@
 		<pool2-version>2.4.2</pool2-version>
 		<fastjson-version>1.2.15</fastjson-version>
 		<hibernate-version>5.3.4.Final</hibernate-version>
+		<guava-version>18.0</guava-version>
 	</properties>
 
 	<dependencies>
@@ -119,6 +120,13 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava-version}</version>
+		</dependency>
+
 
 
 	</dependencies>
